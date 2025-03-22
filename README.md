@@ -1,4 +1,4 @@
-Developed a Help Desk Ticket System using Django, providing an intuitive interface for managing support tickets efficiently.
+.Developed a Help Desk Ticket System using Django, providing an intuitive interface for managing support tickets efficiently.
 •Implemented user authentication, including registration, login, logout, password reset, and profile management for secure access.
 •Designed a dynamic ticket management system, allowing users to create, update, delete, and categorize tickets based on priority and status.
 •Integrated task bucket functionality, enabling users to accept, assign, close, and reopen tasks based on resolution status.
