@@ -1,0 +1,83 @@
+{% extends 'Base.html'%}
+
+{% block content %}
+<div class="col-4 offset-3">
+    <br>
+    <div class="card text">
+        <div class="card-header">
+          <h4>TASK DETAILS</h4>
+        </div>
+        <div class="card-body">
+          {% if taskinfos.TASK_STATUS == 'Open'%}
+            <strong>TASK ID:</strong> {{ taskinfos.id }} <br>
+            <strong>TASK TITLE:</strong> {{ taskinfos.TASK_TITLE }} <br>
+            <strong>TASK CREATED:</strong> {{ taskinfos.TASK_CREATED }} <br>
+            <strong>TASK CREATED ON:</strong> {{ taskinfos.TASK_CREATED_ON }} <br>
+            <strong>TASK DUE DATE:</strong> {{ taskinfos.TASK_DUE_DATE }} <br>
+            <strong>TASK REWARD:</strong> {{ taskinfos.TASK_REWARD }} <br>
+            <strong>TASK STATUS:</strong> {{ taskinfos.TASK_STATUS }} <br>
+            <strong>TASK DESCRIPTION:</strong> {{ taskinfos.TASK_DESCRIPTION }} <br>
+
+          {% elif taskinfos.TASK_STATUS == 'Closed' %}
+           <strong>TASK ID:</strong>{{taskinfos.id}} <br>
+           <strong>TASK TITLE:</strong>{{taskinfos.TASK_TITLE}} <br>
+           <strong>TASK CREATED:</strong>{{taskinfos.TASK_CREATED}} <br>
+           <strong>TASK CREATED ON:</strong>{{taskinfos.TASK_CREATED_ON}} <br>
+           <strong>TASK DUE DATE:</strong>{{taskinfos.TASK_DUE_DATE}} <br>
+           <strong>TASK REWARD:</strong>{{taskinfos.TASK_REWARD}} <br>
+           <strong>TASK STATUS:</strong>{{taskinfos.TASK_STATUS}} <br>
+           <strong>TASK DESCRIPTION:</strong>{{taskinfos.TASK_DESCRIPTION}} <br>
+           <strong>TASK CLOSED:</strong>{{taskinfos.TASK_CLOSED}} <br>
+           <strong>TASK CLOSED ON:</strong>{{taskinfos.TASK_CLOSED_ON}} <br>
+
+          {% elif taskinfos.TASK_STATUS == 'Inprocess' %}
+           <strong>TASK ID:</strong>{{taskinfos.id}} <br>
+           <strong>TASK TITLE:</strong>{{taskinfos.TASK_TITLE}} <br>
+           <strong>TASK CREATED:</strong>{{taskinfos.TASK_CREATED}} <br>
+           <strong>TASK CREATED ON:</strong>{{taskinfos.TASK_CREATED_ON}} <br>
+           <strong>TASK DUE DATE:</strong>{{taskinfos.TASK_DUE_DATE}} <br>
+           <strong>TASK REWARD:</strong>{{taskinfos.TASK_REWARD}} <br>
+           <strong>TASK STATUS:</strong>{{taskinfos.TASK_STATUS}} <br>
+           <strong>TASK DESCRIPTION:</strong>{{taskinfos.TASK_DESCRIPTION}} <br>
+           <strong>TASK HOLDER:</strong>{{taskinfos.TASK_HOLDER}} <br>
+
+          {% elif taskinfos.TASK_STATUS == 'Reopen' %}
+           <strong>TASK ID:</strong>{{taskinfos.id}} <br>
+           <strong>TASK TITLE:</strong>{{taskinfos.TASK_TITLE}} <br>
+           <strong>TASK CREATED :</strong>{{taskinfos.TASK_CREATED}} <br>
+           <strong>TASK CREATED ON:</strong>{{taskinfos.TASK_CREATED_ON}} <br>
+           <strong>TASK DUE DATE:</strong>{{taskinfos.TASK_DUE_DATE}} <br>
+           <strong>TASK REWARD:</strong>{{taskinfos.TASK_REWARD}} <br>
+           <strong>TASK STATUS:</strong>{{taskinfos.TASK_STATUS}} <br>
+           <strong>TASK DESCRIPTION:</strong>{{taskinfos.TASK_DESCRIPTION}} <br>
+
+          {% elif taskinfos.TASK_STATUS == 'Resolved' %}
+           <strong>TASK ID:</strong>{{taskinfos.id}} <br>
+           <strong>TASK TITLE:</strong>{{taskinfos.TASK_TITLE}} <br>
+           <strong>TASK CREATED:</strong>{{taskinfos.TASK_CREATED}} <br>
+           <strong>TASK CREATED ON:</strong>{{taskinfos.TASK_CREATED_ON}} <br>
+           <strong>TASK DUE DATE:</strong>{{taskinfos.TASK_DUE_DATE}} <br>
+           <strong>TASK REWARD:</strong>{{taskinfos.TASK_REWARD}} <br>
+           <strong>TASK STATUS:</strong>{{taskinfos.TASK_STATUS}} <br>
+           <strong>TASK DESCRIPTION:</strong>{{taskinfos.TASK_DESCRIPTION}} <br>
+           <strong>TASK CLOSING COMMENTS:</strong>{{taskinfos.TASK_DESCRIPTION}} <br>
+          {% endif %}
+       <div class="card-footer text-body-secondary">
+              {% if request.user == taskinfos.TASK_CREATED and taskinfos.TASK_STATUS == 'Open' %}
+                <a href="{% url 'basepage' %}" class="btn btn-primary">Go Back</a>
+                <a href="{% url 'updatetaskpage' taskinfos.id %}" class="btn btn-warning">Update</a>
+                <a href="{% url 'deletetaskpage' taskinfos.id %}" class="btn btn-danger">Delete</a>
+              {% elif taskinfos.TASK_STATUS == 'Closed' and taskinfos.TASK_CREATED == request.user %}
+                <a href="{% url 'basepage'%}" class="btn btn-primary">Go Back</a>
+                <a href="{% url 'resolvetaskpage' taskinfos.id %}" class="btn btn-warning">Resolved</a>
+                <a href="{% url 'reopentaskpage' taskinfos.id %}" class="btn btn-danger">Reopen</a>
+              {% elif taskinfos.TASK_STATUS == 'Inprocess' or taskinfos.TASK_STATUS == 'Closed' or taskinfos.TASK_STATUS == 'Reopen' or taskinfos.TASK_STATUS == 'Resolved' %}
+                <a href="{% url 'basepage'%}" class="btn btn-primary">Go Back</a>  
+              {% else %}
+                <a href="{% url 'basepage' %}" class="btn btn-primary">Go Back</a>
+                <a href="{% url 'accepttaskpage' taskinfos.id %}" class="btn btn-info">Accept</a>
+             {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

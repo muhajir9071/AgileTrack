@@ -1,0 +1,17 @@
+
+{% extends "Base.html" %}
+
+        {% block content %}
+        <div class='col-4 offset-3'>
+        <h1> Rgister page </h1>
+        <form action='' method='POST'>
+            {% csrf_token %}
+            {{ Register_form}}
+            {{UserProfile_form}}
+            <br>
+            <button type="submit" class="btn btn-secondary">Register</button>
+        </form>
+        </div>
+        {% endblock content %}
+        
+   

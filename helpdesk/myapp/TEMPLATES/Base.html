@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+    </head>
+    <body>
+       {% include "Navbar.html" %}
+       <div class='col-4 offset-3'>
+       {% if messages %}
+       {% for message in messages %}
+       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        {{message}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+       </div>
+       {% endfor %}
+       {% endif %}
+       </div>
+       {% block content %}
+       <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">TASK ID</th>
+                <th scope="col">TASK TITLE</th>
+                <th scope="col">TASK CREATED</th>
+                <th scope="col">TASK CREATED ON</th>
+                <th scope="col">TASK DUE DATE</th>
+                <th scope="col">TASK REWARD</th>
+                <th scope="col">TASK STATUS</th>
+                <th scope="col">ACTION</th>
+               
+              </tr>
+            </thead>
+            <tbody>
+              {% for Taskdata in Taskdatas %}
+              <tr>
+                <td>{{Taskdata.id}}</td>
+                <td>{{Taskdata.TASK_TITLE}}</td>
+                <td>{{Taskdata.TASK_CREATED}}</td>
+                <td>{{Taskdata.TASK_CREATED_ON}}</td>
+                <td>{{Taskdata.TASK_DUE_DATE}}</td>
+                <td>{{Taskdata.TASK_REWARD}}</td>
+                <td>{{Taskdata.TASK_STATUS}}</td>
+                <td><a href="{% url "taskinfopage" Taskdata.id %} "class="btn btn-primary">View</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+          
+      </table>
+       {% endblock content %}
+      
+        
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+</html>

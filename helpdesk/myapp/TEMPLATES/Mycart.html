@@ -1,0 +1,38 @@
+
+{% extends 'Base.html'%}
+    {% block content %}
+    <div class="col-4 offset-3">
+    <br>
+    {% for cart in carts %}
+    <div class="card text">
+        <div class="card-header">
+          <h4>TASK DETAILS</h4>
+        </div>
+        <div class="card-body">
+         <strong>TASK ID:</strong>{{cart.id}} <br>
+         <strong>TASK TITLE:</strong>{{cart.task.TASK_TITLE}}<br>
+         <strong>TASK CREATED BY:</strong>{{cart.task.TASK_CREATED_BY}} <br>
+         <strong>TASK CREATED ON:</strong>{{cart.task.TASK_CREATED_ON}}<br>
+         <strong>TASK DUE DATE:</strong>{{cart.task.TASK_DUE_DATE}} <br>
+         <strong>TASK REWARD:</strong>{{cart.task.TASK_REWARD}}<br>
+         <strong>TASK STATUS:</strong>{{cart.task.TASK_STATUS}}<br>
+         <strong>TASK DESCRIPTION:</strong>{{cart.task.TASK_DESCRIPTION}} <br>
+         <strong>TASK HOLDER:</strong>{{request.user.username}} <br>
+      
+        
+      
+          
+        </div>
+        <div class="card-footer text-muted">
+            <a href="{% url "basepage" %}" class="btn btn-primary">Go BACK</a>
+            <a href="{% url "closetaskpage" cart.task.id %}"class="btn btn-dark">Closed Task</a>
+            <a href="{% url "removetaskpage" cart.task.id %}" class="btn btn-danger">Remove Task</a>
+        
+        </div>
+      </div>
+      <br>
+      {% endfor %}
+    
+   
+</div>
+    {% endblock content %}
